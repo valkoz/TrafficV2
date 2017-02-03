@@ -28,6 +28,7 @@ bool StartScene::init()
                                            CC_CALLBACK_1(StartScene::menuChooseModeCallback, this));
 	chooseModeButton->setPosition(Vec2(visibleSize.width /2, 4 * visibleSize.height / 5));
 	
+
 	auto settingsButton = MenuItemImage::create(
 		"SettingsNormal.png",
 		"SettingsSelected.png",
