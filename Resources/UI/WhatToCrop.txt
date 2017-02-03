@@ -1,0 +1,22 @@
+Play
+Settings
+Rate
+Exit
+----------
+pictograms:
+
+options
+pause
+back
+sound on
+sound off
+to main menu
+
+_____IDEA_______
+
+chooseModeSceen
+
+label:
+choose your role (way)
+
+pictures (taxi, police, emergency)

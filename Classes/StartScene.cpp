@@ -1,6 +1,7 @@
 #include "StartScene.h"
 #include "SimpleAudioEngine.h"
 #include "ModeScene.h"
+#include "SettingsScene.h"
 USING_NS_CC;
 
 Scene* StartScene::createScene()
@@ -22,23 +23,37 @@ bool StartScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto chooseModeButton = MenuItemImage::create(
-                                           "ChooseModeNormal.png",
+                                           "start.png",
                                            "ChooseModeSelected.png",
                                            CC_CALLBACK_1(StartScene::menuChooseModeCallback, this));
 	chooseModeButton->setPosition(Vec2(visibleSize.width /2, 4 * visibleSize.height / 5));
+	
+	auto settingsButton = MenuItemImage::create(
+		"SettingsNormal.png",
+		"SettingsSelected.png",
+		CC_CALLBACK_1(StartScene::menuSettingsCallback, this));
+	settingsButton->setPosition(Vec2(visibleSize.width / 2,
+		3 * visibleSize.height / 5));
+
+	auto leaderboardButton = MenuItemImage::create(
+		"LeaderboardNormal.png",
+		"LeaderboardSelected.png",
+		CC_CALLBACK_1(StartScene::menuLeaderBoardCallback, this));
+	leaderboardButton->setPosition(Vec2(visibleSize.width / 2, 2 * visibleSize.height / 5));
 
 	auto exitButton = MenuItemImage::create(
 		"ExitNormal.png",
 		"ExitSelected.png",
 		CC_CALLBACK_1(StartScene::menuCloseCallback, this));
-	exitButton->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 5));
+	exitButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5));
 
+	
 
-    auto menu = Menu::create(chooseModeButton, exitButton, NULL);
+    auto menu = Menu::create(chooseModeButton, leaderboardButton, exitButton, settingsButton, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
    
-    auto sprite = Sprite::create("HelloWorld.png");
+    auto sprite = Sprite::create("road960.png");
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
     this->addChild(sprite, 0);
@@ -49,18 +64,11 @@ bool StartScene::init()
 
 void StartScene::menuCloseCallback(Ref* pSender)
 {
-    //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
 
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
-    
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
-    
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-    
     
 }
 
@@ -68,4 +76,14 @@ void StartScene::menuChooseModeCallback(Ref* pSender) {
 	auto nextScene = ModeScene::createScene();  
 	auto transition = TransitionFade::create(1.0f, nextScene); 
 	Director::getInstance()->replaceScene(transition);
+}
+
+void StartScene::menuSettingsCallback(Ref* pSender) {
+	auto nextScene = SettingsScene::createScene();
+	auto transition = TransitionFade::create(1.0f, nextScene);
+	Director::getInstance()->replaceScene(transition);
+}
+
+void StartScene::menuLeaderBoardCallback(Ref* pSender) {
+	Director::getInstance()->end();
 }

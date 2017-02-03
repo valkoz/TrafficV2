@@ -1,6 +1,7 @@
 #include "ModeScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
+#include "StartScene.h"
 
 USING_NS_CC;
 
@@ -32,16 +33,36 @@ bool ModeScene::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
+    auto policeModeButton = MenuItemImage::create(
                                            "SelectNormal.png",
                                            "SelectSelected.png",
                                            CC_CALLBACK_1(ModeScene::menuCloseCallback, this));
     
-    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+	policeModeButton->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 4));
+
+	auto emergencyModeButton = MenuItemImage::create(
+		"SelectNormal.png",
+		"SelectSelected.png",
+		CC_CALLBACK_1(ModeScene::menuCloseCallback, this));
+
+	emergencyModeButton->setPosition(Vec2(visibleSize.width / 2, 2 * visibleSize.height / 4));
+
+	auto taxiModeButton = MenuItemImage::create(
+		"SelectNormal.png",
+		"SelectSelected.png",
+		CC_CALLBACK_1(ModeScene::menuCloseCallback, this));
+
+	taxiModeButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
+
+	auto backButton = MenuItemImage::create(
+		"BackNormal.png",
+		"BackModeSelected.png",
+		CC_CALLBACK_1(ModeScene::menuBackCallback, this));
+	backButton->setPosition(Vec2(visibleSize.width - backButton->getContentSize().width / 2,
+		backButton->getContentSize().height / 2));
 
     // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
+    auto menu = Menu::create(policeModeButton, emergencyModeButton, taxiModeButton, backButton, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
@@ -51,17 +72,10 @@ bool ModeScene::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
-
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+   
 
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+    auto sprite = Sprite::create("road960.png");
 
     // position the sprite on the center of the screen
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
@@ -76,6 +90,12 @@ bool ModeScene::init()
 void ModeScene::menuCloseCallback(Ref* pSender)
 {
 	auto nextScene = GameScene::createScene();
+	auto transition = TransitionFade::create(1.0f, nextScene);
+	Director::getInstance()->replaceScene(transition);
+}
+
+void ModeScene::menuBackCallback(Ref* pSender) {
+	auto nextScene = StartScene::createScene();
 	auto transition = TransitionFade::create(1.0f, nextScene);
 	Director::getInstance()->replaceScene(transition);
 }

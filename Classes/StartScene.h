@@ -14,6 +14,10 @@ public:
     void menuCloseCallback(cocos2d::Ref* pSender);
 	void menuChooseModeCallback(cocos2d::Ref* pSender);
 
+	void menuSettingsCallback(Ref * pSender);
+
+	void menuLeaderBoardCallback(Ref * pSender);
+
     // implement the "static create()" method manually
     CREATE_FUNC(StartScene);
 };
