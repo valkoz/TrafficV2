@@ -38,3 +38,16 @@ out/
 # platforms and some others added by myself
 cocos2d/
 proj.*
+!proj.android
+proj.android/obj
+proj.android/.externalToolBuilders/
+proj.android/.settings/
+proj.android/ant.properties
+proj.android/build-cfg.json
+proj.android/build.xml
+proj.android/jni/hellocpp/
+proj.android/local.properties
+proj.android/proguard-project.txt
+proj.android/project.properties
+proj.android/res/
+proj.android/src/

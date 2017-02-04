@@ -22,8 +22,8 @@ bool GameScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto pauseButton = MenuItemImage::create(
-                                           "PauseNormal.png",
-                                           "PauseSelected.png",
+                                           "UI/PauseNormal.png",
+                                           "UI/PauseSelected.png",
                                            CC_CALLBACK_1(GameScene::menuPauseCallback, this));
     
 	pauseButton->setPosition(Vec2(origin.x + visibleSize.width - pauseButton->getContentSize().width/2 ,

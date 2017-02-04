@@ -23,22 +23,22 @@ bool PauseScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto backButton = MenuItemImage::create(
-         "BackNormal.png",
-         "BackModeSelected.png",
+         "UI/BackNormalIcon.png",
+         "UI/BackSelectedIcon.png",
          CC_CALLBACK_1(PauseScene::menuBackCallback, this));
 	backButton->setPosition(Vec2(visibleSize.width - backButton->getContentSize().width / 2,
 		visibleSize.height  - backButton->getContentSize().height / 2));
 
 	auto settingsButton = MenuItemImage::create(
-		"SettingsNormal.png",
-		"SettingsSelected.png",
+		"UI/SettingsNormalIcon.png",
+		"UI/SettingsSelectedIcon.png",
 		CC_CALLBACK_1(PauseScene::menuSettingsCallback, this));
 	settingsButton->setPosition(Vec2(visibleSize.width - settingsButton->getContentSize().width / 2,
 		visibleSize.height - settingsButton->getContentSize().height * 2));
 
 	auto exitButton = MenuItemImage::create(
-		"ExitBoxNormal.png",
-		"ExitBoxSelected.png",
+		"UI/ToMainMenuNormal.png",
+		"UI/ToMainMenuSelected.png",
 		CC_CALLBACK_1(PauseScene::menuExitToMainMenuCallback, this));
 	exitButton->setPosition(Vec2(visibleSize.width - exitButton->getContentSize().width / 2,
 		visibleSize.height - exitButton->getContentSize().height * 4));

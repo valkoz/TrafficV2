@@ -23,29 +23,35 @@ bool StartScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto chooseModeButton = MenuItemImage::create(
-                                           "start.png",
-                                           "ChooseModeSelected.png",
+                                           "UI/ChooseModeNormal.png",
+                                           "UI/ChooseModeSelected.png",
                                            CC_CALLBACK_1(StartScene::menuChooseModeCallback, this));
-	chooseModeButton->setPosition(Vec2(visibleSize.width /2, 4 * visibleSize.height / 5));
+	chooseModeButton->setScale(1.5);
+	chooseModeButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
 	
 	auto settingsButton = MenuItemImage::create(
-		"SettingsNormal.png",
-		"SettingsSelected.png",
+		"UI/SettingsNormal.png",
+		"UI/SettingsSelected.png",
 		CC_CALLBACK_1(StartScene::menuSettingsCallback, this));
+	settingsButton->setScale(1.5);
 	settingsButton->setPosition(Vec2(visibleSize.width / 2,
-		3 * visibleSize.height / 5));
+		 visibleSize.height / 2 - settingsButton->getBoundingBox().size.height * 1.5f));
 
 	auto leaderboardButton = MenuItemImage::create(
-		"LeaderboardNormal.png",
-		"LeaderboardSelected.png",
+		"UI/LeaderboardNormal.png",
+		"UI/LeaderboardSelected.png",
 		CC_CALLBACK_1(StartScene::menuLeaderBoardCallback, this));
-	leaderboardButton->setPosition(Vec2(visibleSize.width / 2, 2 * visibleSize.height / 5));
+	leaderboardButton->setScale(1.5);
+	leaderboardButton->setPosition(Vec2(visibleSize.width / 2, 
+		visibleSize.height / 2 - settingsButton->getBoundingBox().size.height * 3));
 
 	auto exitButton = MenuItemImage::create(
-		"ExitNormal.png",
-		"ExitSelected.png",
+		"UI/ExitNormal.png",
+		"UI/ExitSelected.png",
 		CC_CALLBACK_1(StartScene::menuCloseCallback, this));
-	exitButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5));
+	exitButton->setScale(1.5);
+	exitButton->setPosition(Vec2(visibleSize.width / 2,
+		visibleSize.height / 2 - settingsButton->getBoundingBox().size.height * 4.5f));
 
 	
 
